@@ -1,7 +1,7 @@
 import {pgTable, varchar} from "drizzle-orm/pg-core";
 import {createdAt, updatedAt} from "../schemaHelpers";
 import {relations} from "drizzle-orm";
-import {JobInfoTable} from "@/drizzle/schema/jobinfo";
+import {JobInfoTable} from "@/drizzle/schema/jobInfo";
 
 export const UserTable = pgTable("users", {
     id: varchar().primaryKey(),
