@@ -48,12 +48,16 @@ export function JobInfoForm({
 }) {
   const form = useForm<JobInfoFormData>({
     resolver: zodResolver(jobInfoSchema),
-    defaultValues: jobInfo ?? {
-      name: "",
-      title: null,
-      description: "",
-      experienceLevel: "junior",
-    },
+
+    /*
+      here changed the jobInfo ?? for type safety
+    */
+    defaultValues: {
+      name: jobInfo?.name ?? "",
+      title: jobInfo?.title ?? null,
+      description: jobInfo?.description ?? "",
+      experienceLevel: jobInfo?.experienceLevel ?? "junior",
+  },
   })
 
   async function onSubmit(values: JobInfoFormData) {
