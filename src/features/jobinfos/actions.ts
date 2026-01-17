@@ -5,11 +5,12 @@ import { jobInfoSchema } from "./schemas";
 import { getCurrentUser } from "@/services/clerk/lib/getCurrentUser";
 import { redirect } from "next/navigation"
 import { insertJobInfo , updateJobInfo as updateJobInfoDb} from "./db";
-import { cacheTag } from "next/cache";
+import { cacheTag, revalidateTag } from "next/cache";
 import { getJobInfoIdTag } from "./dbCache";
 import { db } from "@/drizzle/db";
 import { and, eq } from "drizzle-orm";
 import { JobInfoTable } from "@/drizzle/schema";
+import { revalidatePath } from "next/cache";
 
 export async function createJobInfo(unsafeData : z.infer<typeof jobInfoSchema>){
     const {userId} = await getCurrentUser();
@@ -31,7 +32,9 @@ export async function createJobInfo(unsafeData : z.infer<typeof jobInfoSchema>){
 
     const jobInfo = await insertJobInfo({...data, userId});
 
-    redirect(`app/job-infos/${jobInfo.id}`)
+    revalidateTag(getJobInfoIdTag(jobInfo.id), "max")
+
+    redirect(`/app/job-infos/${jobInfo.id}`)
 }
 
 export async function updateJobInfo(id : string ,unsafeData : z.infer<typeof jobInfoSchema>){
@@ -61,7 +64,7 @@ export async function updateJobInfo(id : string ,unsafeData : z.infer<typeof job
 
     const jobInfo = await updateJobInfoDb(id , data);
 
-    redirect(`app/job-infos/${jobInfo.id}`)
+    redirect(`/app/job-infos/${jobInfo.id}`)
 }
 
 
@@ -73,3 +76,4 @@ async function getJobInfo(id: string, userId: string) {
     where: and(eq(JobInfoTable.id, id), eq(JobInfoTable.userId, userId)),
   })
 }
+
