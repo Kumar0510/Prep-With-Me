@@ -7,7 +7,7 @@ import { cacheTag } from "next/dist/server/use-cache/cache-tag"
 
 export async function getCurrentUser({ allData = false } = {}) {
   const { userId, redirectToSignIn } = await auth()
-
+  if(userId == null) return redirectToSignIn()
   return {
     userId,
     redirectToSignIn,

@@ -26,7 +26,7 @@ const options= [
     {
         label : "Practice Interview",
         description : "Simulate a real interview with AI-powered mock Interviews",
-        href : "interview"
+        href : "interviews"
     },
     {
         label : "Refine Resume",
