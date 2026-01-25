@@ -42,7 +42,7 @@ async function JobInfos(){
         )
     }
 
-    return <div className="container my-4">
+    return ( <div className="container my-4">
         <div className="flex gap-2 justify-between mb-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl">
                 Select a Job Info
@@ -104,6 +104,7 @@ async function JobInfos(){
             </Link>
         </div>
     </div>
+    )
 }
 
 
