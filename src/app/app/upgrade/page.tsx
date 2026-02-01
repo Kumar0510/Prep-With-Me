@@ -19,7 +19,6 @@ export default function UpgradePage() {
             continue using all features.
           </AlertDescription>
         </Alert>
-
         <PricingTable />
       </div>
     </div>

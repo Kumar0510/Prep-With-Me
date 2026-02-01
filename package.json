@@ -13,6 +13,8 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.20",
+    "@ai-sdk/groq": "^3.0.21",
     "@clerk/nextjs": "^6.36.7",
     "@hookform/resolvers": "^5.2.2",
     "@humeai/voice-react": "^0.2.12",
@@ -25,6 +27,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tailwindcss/typography": "^0.5.19",
+    "ai": "^6.0.67",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.1",

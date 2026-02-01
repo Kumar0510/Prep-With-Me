@@ -19,6 +19,9 @@ export const env = createEnv({
         //Hume
         HUME_API_KEY : z.string().min(1),
         HUME_SECRET_KEY : z.string().min(1),
+        GROQ_API_KEY : z.string().min(1),
+
+        GOOGLE_API_KEY: z.string().min(1),
     },
     createFinalSchema : env => {
         return z.object(env).transform(val => {

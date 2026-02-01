@@ -2,10 +2,12 @@ import { BackLink } from "@/components/BackLink"
 import { MarkdownRenderer } from "@/components/MarkdownRenderer"
 import { Skeleton, SkeletonButton } from "@/components/Skeleton"
 import { SuspendedItem } from "@/components/SuspendedItem"
+import { ActionButton } from "@/components/ui/action-button"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { db } from "@/drizzle/db"
 import { InterviewTable } from "@/drizzle/schema"
+import { generateInterviewFeedback } from "@/features/interviews/actions"
 import { getInterviewIdTag } from "@/features/interviews/dbCache"
 import { getJobInfoIdTag } from "@/features/jobinfos/dbCache"
 import { formatDateTime } from "@/lib/formatters"
@@ -63,15 +65,17 @@ export default async function InterviewPage({params}:{
                     result = {i => (
                         i.feedback == null ? (
                             //TODO : feedback
-                            null
+                            <ActionButton action={generateInterviewFeedback.bind(null, i.id)}>
+                                Generate Feedback
+                            </ActionButton>
                         ) : (
                             <Dialog>
-                                <DialogTrigger asChild>
+                                <DialogTrigger >
                                     <Button>
                                         View feedback
                                     </Button>
                                     <DialogContent className="md:max-w-3xl 
-                                    lg:max-w-4xl max-h-[calc(100% - 2rem)]
+                                    lg:max-w-4xl max-h-[calc(100%-2rem)]
                                     overflow-y-auto flex flex-col"> 
                                     <DialogTitle>
                                         Feedback
@@ -90,6 +94,7 @@ export default async function InterviewPage({params}:{
         </div>
     </div>
 }
+
 
 async function Messages({ interview } : {
     interview : Promise<{humeChatId : string | null}>
