@@ -8,6 +8,8 @@ import { and, eq } from "drizzle-orm";
 import { InterviewTable, JobInfoTable } from "@/drizzle/schema";
 import { insertInterview, updateInterview as updateInterviewDb} from "./db";
 import { getInterviewIdTag } from "./dbCache";
+import { canCreateInterview } from "./permissions";
+import { PLAN_LIMIT_MESSAGE } from "@/lib/errorToast";
 
 
 
@@ -29,7 +31,13 @@ Promise <{error : true,message : string} | {error : false, id: string}>
     }
 
     // TODO : permissions and rate limit
-
+    if(!(await canCreateInterview())){
+        return {
+            error : true,
+            message : PLAN_LIMIT_MESSAGE
+        }
+    }
+    
     //jobInfo check
     const jobInfo = await getJobInfo( jobInfoId, userId);
 

@@ -31,7 +31,7 @@ export default async function AppPage(){
 
 async function JobInfos(){
     const {userId, redirectToSignIn} = await getCurrentUser();
-    if(userId == null) return redirectToSignIn() 
+    //if(userId == null) return redirectToSignIn() 
 
     const jobInfos = await getJobInfos(userId);
 

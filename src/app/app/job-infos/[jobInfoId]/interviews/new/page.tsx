@@ -5,12 +5,13 @@ import { getCurrentUser } from "@/services/clerk/lib/getCurrentUser";
 import { and, eq } from "drizzle-orm";
 import { Loader2Icon } from "lucide-react"
 import { cacheTag } from "next/cache";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react"
 import {fetchAccessToken} from "hume"
 import { env } from "@/data/env/server";
 import { VoiceProvider } from "@humeai/voice-react";
 import { StartCall } from "./_StartCall";
+import { canCreateInterview } from "@/features/interviews/permissions";
 
 
 export default async function NewInterviewPage({params} : {
@@ -41,6 +42,10 @@ async function SuspendedComponent({jobInfoId} :{jobInfoId : string}){
         // possiblity to remove this code
         return null;
     } 
+
+    if(!(await canCreateInterview())){
+        return redirect("/app/upgrade")
+    }
 
     const jobInfo = await getJobInfo(jobInfoId, userId);
 

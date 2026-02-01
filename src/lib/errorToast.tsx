@@ -12,7 +12,7 @@ export function errorToast(message : string){
                 <Button size="sm" asChild onClick={()=>{
                     toast.dismiss(toastId)
                 }}>
-                    <Link href="app/upgrade">Upgrade Plan</Link>
+                    <Link href="/app/upgrade">Upgrade Plan</Link>
                 </Button>
             )   
         }
