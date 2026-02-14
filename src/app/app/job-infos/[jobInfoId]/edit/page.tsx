@@ -56,8 +56,8 @@ async function getJobInfo(
     jobInfoId : string,
     userId : string
 ){
-    "use cache"
-    cacheTag(getJobInfoIdTag(jobInfoId))
+    // "use cache"
+    // cacheTag(getJobInfoIdTag(jobInfoId))
     
     return await db.query.JobInfoTable.findFirst({
         where : and (eq(JobInfoTable.id , jobInfoId) , eq (JobInfoTable.userId , userId) )

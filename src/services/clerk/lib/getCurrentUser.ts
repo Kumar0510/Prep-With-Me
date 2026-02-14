@@ -7,7 +7,7 @@ import { cacheTag } from "next/dist/server/use-cache/cache-tag"
 
 export async function getCurrentUser({ allData = false } = {}) {
   const { userId, redirectToSignIn } = await auth()
-  if(userId == null) return redirectToSignIn()
+  // if(userId == null) return redirectToSignIn()
   return {
     userId,
     redirectToSignIn,
@@ -16,8 +16,8 @@ export async function getCurrentUser({ allData = false } = {}) {
 }
 
 async function getUser(id: string) {
-  "use cache"
-  cacheTag(getUserIdTag(id))
+  // "use cache"
+  // cacheTag(getUserIdTag(id))
 
   return db.query.UserTable.findFirst({
     where: eq(UserTable.id, id),

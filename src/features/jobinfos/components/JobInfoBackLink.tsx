@@ -34,8 +34,8 @@ async function JobName({jobInfoId} : {
 }
 
 async function getJobInfo(jobInfoId : string){
-    "use cache"
-    cacheTag(getJobInfoIdTag(jobInfoId));
+    // "use cache"
+    // cacheTag(getJobInfoIdTag(jobInfoId));
 
     return db.query.JobInfoTable.findFirst({
         where : eq(JobInfoTable.id, jobInfoId)

@@ -31,7 +31,7 @@ export default async function AppPage(){
 
 async function JobInfos(){
     const {userId, redirectToSignIn} = await getCurrentUser();
-    //if(userId == null) return redirectToSignIn() 
+    if(userId == null) return redirectToSignIn() 
 
     const jobInfos = await getJobInfos(userId);
 
@@ -132,8 +132,8 @@ function NoJobInfos() {
 
 
 async function getJobInfos(userId : string){
-    "use cache"
-    cacheTag(getJobInfoUserTag(userId));
+    // "use cache"
+    // cacheTag(getJobInfoUserTag(userId));
 
     return db.query.JobInfoTable.findMany({
         where : eq(JobInfoTable.userId, userId),

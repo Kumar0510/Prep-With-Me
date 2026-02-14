@@ -115,8 +115,8 @@ async function Messages({ interview } : {
 }
 
 async function getInterview(id : string , userId : string){
-    "use cache"
-    cacheTag(getInterviewIdTag(id))
+    // "use cache"
+    // cacheTag(getInterviewIdTag(id))
     
     const interview = await db.query.InterviewTable.findFirst({
         where : eq(InterviewTable.id, id),

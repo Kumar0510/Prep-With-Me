@@ -129,8 +129,8 @@ export async function generateInterviewFeedback(interviewId : string){
 }
 
 async function getJobInfo(id: string, userId: string) {
-  "use cache"
-  cacheTag (getJobInfoIdTag(id))
+//   "use cache"
+//   cacheTag (getJobInfoIdTag(id))
 
   return db.query.JobInfoTable.findFirst({
     where: and(eq(JobInfoTable.id, id), eq(JobInfoTable.userId, userId)),
@@ -138,8 +138,8 @@ async function getJobInfo(id: string, userId: string) {
 }
 
 async function getInterview(id :string, userId :string){
-    "use cache"
-    cacheTag(getInterviewIdTag(id))
+    // "use cache"
+    // cacheTag(getInterviewIdTag(id))
 
     const interview = await db.query.InterviewTable.findFirst({
         where : eq(InterviewTable.id, id),

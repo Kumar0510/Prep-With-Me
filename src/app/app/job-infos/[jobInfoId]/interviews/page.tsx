@@ -108,9 +108,9 @@ async function SuspendedPage ({jobInfoId} : {jobInfoId : string}){
 }
 
 async function getInterviews(jobInfoId : string, userId : string){
-    "use cache"
-    cacheTag(getInterviewJobInfoTag(jobInfoId));
-    cacheTag(getJobInfoIdTag(jobInfoId));
+    // "use cache"
+    // cacheTag(getInterviewJobInfoTag(jobInfoId));
+    // cacheTag(getJobInfoIdTag(jobInfoId));
 
     const data = await db.query.InterviewTable.findMany({
         where : and (eq (InterviewTable.jobInfoId, jobInfoId), 

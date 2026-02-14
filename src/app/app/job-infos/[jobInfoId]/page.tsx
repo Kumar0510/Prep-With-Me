@@ -143,8 +143,8 @@ export default async function JobInfoPage({params} : {
 }
 
 async function getJobInfo(id :string, userId  :string ){
-    "use cache"
-    cacheTag(getJobInfoIdTag(id))
+    // "use cache"
+    // cacheTag(getJobInfoIdTag(id))
 
 
     return db.query.JobInfoTable.findFirst({
